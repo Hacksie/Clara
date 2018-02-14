@@ -8,14 +8,17 @@
     rows: 4
     conversation_text: _label_conversation
     #speech_text: _label_speech
+    Label:
+        text: "[color=000000]1[/color]"        
+    Label:
+        text: "[color=000000]2[/color]"
     Button:
-        markup: True
-        text: "[color=000000]Exit[/color]"
-        on_press: app.quit_button_pressed()
-    Label:
-        text: "[color=000000]2[/color]"        
-    Label:
-        text: "[color=000000]3[/color]"
+        on_press: app.quit_button_pressed()        
+        Image:
+            size: 24, 24
+            source: "assets/images/exit.png"        
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
     Label:
         text: "[color=000000]4[/color]"
     Label:
