@@ -1,0 +1,47 @@
+
+<Label>:  
+    font_name: "Cabin"
+
+<Container>:
+    name: 'MainContainer'
+    cols: 3
+    rows: 4
+    conversation_text: _label_conversation
+    #speech_text: _label_speech
+    Button:
+        markup: True
+        text: "[color=000000]Exit[/color]"
+        on_press: app.quit_button_pressed()
+    Label:
+        text: "[color=000000]2[/color]"        
+    Label:
+        text: "[color=000000]3[/color]"
+    Label:
+        text: "[color=000000]4[/color]"
+    Label:
+        markup: True
+        id: _label_conversation
+        text_size: self.size
+        font_size: "20sp"
+        valign: "center"
+        halign: "center"        
+        text: "[color=000000]How can I help?[/color]"
+    ToggleButton:
+        on_press: app.mic_button_pressed()
+        Image:
+            size: 24, 24
+            source: "assets/images/microphone_open.png"        
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+    Label:
+        text: "[color=000000]7[/color]"
+    Label:
+        text: "[color=000000]8[/color]"        
+    # Label:
+    #     markup: True
+    #     id: _label_speech
+    #     text_size: self.size
+    #     font_size: "25sp"
+    #     valign: "center"
+    #     halign: "center"        
+    #     text: "[color=000000]Waiting...[/color]"    
