@@ -5,7 +5,7 @@ import logging
 
 from ui import UI
 from speech import Speech
-
+from kivy.clock import Clock
 
 class Clara():
     def __init__(self):
@@ -13,21 +13,34 @@ class Clara():
         self.speech_thread = Speech(self.ready, self.thinking, self.recognize_success, self.recognize_failed)
         self.speech_thread.start()
         self.ui = UI()
+        self.ui.set_version("clara.2018.001")
         self.ui.register_quit_function(self.exit)
         self.ui.register_mic_function(self.toggle_microphone)
         self.ui.run()
     def exit(self):
         sys.exit()
+    def set_conversation(self, text):
+        self.conversation_state = "conversation"
+        self.voice = text
+        self.ui.set_conversation(text)
+    def set_error_conversation(self, text):
+        self.conversation_state = "error"
+        self.voice = text
+        self.ui.set_conversation(text)        
+        Clock.schedule_once(self.clear_error, 2)
+    def clear_error(self, dt):
+        if self.conversation_state == "error":
+            self.ready()
     def initialising(self):
-        self.ui.set_conversation("Initialising...")
+        self.set_conversation("Initialising...")
     def ready(self):
-        self.ui.set_conversation("How can I help?")
+        self.set_conversation("How can I help?")
     def thinking(self):
-        self.ui.set_conversation("Thinking...")
+        self.set_conversation("Thinking...")
     def recognize_success(self, text):
-        self.ui.set_conversation("I heard " + text)
+        self.set_conversation("I heard " + text)
     def recognize_failed(self, error):
-        self.ui.set_conversation("I failed to recognise what you said")
+        self.set_error_conversation("I failed to recognise what you said")
     def toggle_microphone(self):
         pass
 

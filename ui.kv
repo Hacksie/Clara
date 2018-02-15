@@ -1,50 +1,79 @@
-
-<Label>:  
-    font_name: "Cabin"
+#:import Toolbar kivymd.toolbar.Toolbar
+#:import ThemeManager kivymd.theming.ThemeManager
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+#:import colors kivymd.color_definitions.colors
+#:import MDTextField kivymd.textfields.MDTextField
 
 <Container>:
     name: 'MainContainer'
-    cols: 3
-    rows: 4
     conversation_text: _label_conversation
-    #speech_text: _label_speech
-    Label:
-        text: "[color=000000]1[/color]"        
-    Label:
-        text: "[color=000000]2[/color]"
-    Button:
-        on_press: app.quit_button_pressed()        
-        Image:
-            size: 24, 24
-            source: "assets/images/exit.png"        
-            center_x: self.parent.center_x
-            center_y: self.parent.center_y
-    Label:
-        text: "[color=000000]4[/color]"
-    Label:
-        markup: True
-        id: _label_conversation
-        text_size: self.size
-        font_size: "20sp"
-        valign: "center"
-        halign: "center"        
-        text: "[color=000000]How can I help?[/color]"
-    ToggleButton:
-        on_press: app.mic_button_pressed()
-        Image:
-            size: 24, 24
-            source: "assets/images/microphone_open.png"        
-            center_x: self.parent.center_x
-            center_y: self.parent.center_y
-    Label:
-        text: "[color=000000]7[/color]"
-    Label:
-        text: "[color=000000]8[/color]"        
-    # Label:
-    #     markup: True
-    #     id: _label_speech
-    #     text_size: self.size
-    #     font_size: "25sp"
-    #     valign: "center"
-    #     halign: "center"        
-    #     text: "[color=000000]Waiting...[/color]"    
+    input_text: _label_input
+    version_text: _label_version
+
+    orientation: 'vertical'
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: 100
+        Toolbar:
+            id: toolbar
+            title: 'Clara'
+            md_bg_color: app.theme_cls.primary_color
+            background_palette: 'Primary'
+            background_hue: '500'
+            left_action_items: [['menu', lambda x: app.quit_button_pressed()], ["microphone", lambda x: app.quit_button_pressed()]]
+            right_action_items: [['exit-to-app', lambda x: app.quit_button_pressed()]]
+        
+
+    BoxLayout:  
+        size_hint_y: 200
+        MDLabel:
+            font_style: 'Body1'
+            theme_text_color: 'Primary'
+            text: ""    
+            size_hint_x: 7         
+
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: 200
+        MDLabel:
+            id: _label_conversation
+            font_style: 'Body1'
+            theme_text_color: 'Primary'
+            text: "How can I help?"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            font_size: "20sp"
+            halign: "center"
+            size_hint_x: 7
+
+    BoxLayout:  
+        size_hint_y: 260 
+        MDLabel:
+            font_style: 'Body1'
+            theme_text_color: 'Primary'
+            text: ""    
+            size_hint_x: 1  
+        MDTextField:
+            id: _label_input
+            hint_text: "Input"
+            font_style: 'Body1'
+            #text_size: self.size
+            font_size: "20sp"
+            #pos_hint: {'center_x': 0.5, 'center_y': 0.5}                      
+            size_hint_x: 5
+        MDLabel:
+            font_style: 'Body1'
+            theme_text_color: 'Primary'
+            text: ""    
+            size_hint_x: 1
+
+    BoxLayout:  
+        size_hint_y: 40      
+        MDLabel:
+            id: _label_version
+            font_style: 'Body1'
+            theme_text_color: 'Secondary'
+            text: "Clara"    
+            size_hint_x: 7
+            halign: "right"
+
+ 
