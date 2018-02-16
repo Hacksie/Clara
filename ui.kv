@@ -3,13 +3,15 @@
 #:import get_color_from_hex kivy.utils.get_color_from_hex
 #:import colors kivymd.color_definitions.colors
 #:import MDTextField kivymd.textfields.MDTextField
+#:import MDSpinner kivymd.spinner.MDSpinner
 
 <Container>:
     name: 'MainContainer'
     conversation_text: _label_conversation
     input_text: _label_input
     version_text: _label_version
-
+    #spinner: _spinner
+    
     orientation: 'vertical'
     BoxLayout:
         orientation: 'horizontal'
@@ -26,6 +28,16 @@
 
     BoxLayout:  
         size_hint_y: 200
+        # MDSpinner:
+        #     id: _spinner
+        #     #size_hint: None, None
+        #     #size_x: "10dp"
+        #     #size_y: "10dp"
+        #     #pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        #     active: True
+        #     width: "50px"
+        #     #size_hint_x: 7  
+        
         MDLabel:
             font_style: 'Body1'
             theme_text_color: 'Primary'
